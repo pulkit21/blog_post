@@ -1,5 +1,7 @@
 %h1 Listing posts
-
+= form_tag posts_path, :method => 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "Search", name: nil, class: "btn btn-primary"
 %table
   %tr
     %th Title
@@ -13,10 +15,11 @@
     %tr
       %td= post.title
       %td= post.body
-      %td= post.user.email
+      %td= post.user.username
       %td= link_to 'Show', post
-      %td= link_to 'Edit', edit_post_path(post)
-      %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - if post.users_post(current_user)
+        %td= link_to 'Edit', edit_post_path(post)
+        %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

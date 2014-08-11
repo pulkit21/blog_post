@@ -6,13 +6,14 @@
 %p
   %b Body:
   = @post.body
-  = @post.user.email
-  - if @post.published?
-    = @post.published_at
-    = link_to "unpublish", unpublished_post_path, class: "btn btn-primary"
-  - else
-    = link_to "publish", published_post_path, class: "btn btn-primary"
+  = @post.user.username
+  - if @post.users_post(current_user)
+    - if @post.published?
+      = @post.published_at
+      = link_to "unpublish", unpublished_post_path, class: "btn btn-primary"
+    - else
+      = link_to "publish", published_post_path, class: "btn btn-primary"
 
-= link_to 'Edit', edit_post_path(@post)
+    = link_to 'Edit', edit_post_path(@post)
 \|
 = link_to 'Back', posts_path

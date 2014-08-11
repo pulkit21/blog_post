@@ -21,11 +21,17 @@ class Post < ActiveRecord::Base
     end
   end
 
-  #If Post is published
+  # Check if the post is current user post
+  def users_post(user)
+    self.user.id == user.id
+  end
+
+  #If Post published time present 
   def published?
     self.published_at.present?
   end
 
+  #If publish time is nill
   def published_nil?
     self.published_at.nil?
   end
