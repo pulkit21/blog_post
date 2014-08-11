@@ -23,7 +23,7 @@ class Post < ActiveRecord::Base
 
   # Check if the post is current user post
   def users_post(user)
-    self.user.id == user.id
+    self.user.id == user.id if !user.nil?
   end
 
   #If Post published time present 

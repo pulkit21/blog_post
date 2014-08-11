@@ -56,13 +56,21 @@ class PostsController < ApplicationController
   end
 
   def published
-    @post.publish!
-    redirect_to @post, notice: 'Post was successfully published.'
+    if @post.users_post(current_user)
+      @post.publish!
+      redirect_to @post, notice: 'Post was successfully published.'
+    else
+      redirect_to @post, notice: 'Not an authorized user' 
+    end
   end
 
   def unpublished
-    @post.unpublish!
-    redirect_to @post, notice: 'Post was successfully unpublished.'
+    if @post.users_post(current_user)
+      @post.unpublish!
+      redirect_to @post, notice: 'Post was successfully unpublished.'
+    else
+      redirect_to @post, notice: 'Not an authorized user' 
+    end
   end
 
   # DELETE /posts/1
