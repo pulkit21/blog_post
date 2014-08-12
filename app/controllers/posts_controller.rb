@@ -4,10 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @posts = Post.published
     if params[:search].present?
-      @posts = Post.where("title like :search OR body like :search", search: "%#{params[:search]}%")
+      @posts = @posts.where("title like :search OR body like :search", search: "%#{params[:search]}%")
     else
-      @posts = Post.all
+      @posts
     end
   end
 

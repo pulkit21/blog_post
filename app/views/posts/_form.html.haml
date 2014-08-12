@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :body
-
+    / = f.input :body
+    = f.input :body, :as => :ckeditor, label: false
   .form-actions
     = f.button :submit

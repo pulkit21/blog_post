@@ -59,7 +59,18 @@ gem 'terminal-notifier-guard', group: [:development, :test]
 # For Tagging
 gem 'acts-as-taggable-on'
 
+# For the HTML editor
+gem 'ckeditor', github: 'galetahub/ckeditor'
+gem "non-stupid-digest-assets"
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick'
+gem 'fog', '~> 1.21.0'
+gem 'unf'
 
+
+# For Commenting
+# gem 'disqus'
+# gem "middleman-disqus"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

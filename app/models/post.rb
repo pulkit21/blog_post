@@ -2,7 +2,12 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :body
   belongs_to :user
+  
+  scope :published, lambda {where('published_at IS NOT NULL')}
+  # scope :unpublished, lambda {where('published_at IS NULL')}
 
+  after_create :update_post_path, on: :create
+  # before_save :update_post_path
   #Publish the blogpost
   def publish!
     if self.published_nil?
@@ -35,4 +40,16 @@ class Post < ActiveRecord::Base
   def published_nil?
     self.published_at.nil?
   end
+
+  #For parameterize
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
+  #Update the field post_path in database
+  def update_post_path
+    self.post_path = to_param
+    self.save!
+  end
+
 end

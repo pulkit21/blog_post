@@ -1,7 +1,4 @@
 %h1 Listing posts
-= form_tag posts_path, :method => 'get' do
-  = text_field_tag :search, params[:search]
-  = submit_tag "Search", name: nil, class: "btn btn-primary"
 %table
   %tr
     %th Title
@@ -14,7 +11,7 @@
   - @posts.each do |post|
     %tr
       %td= post.title
-      %td= post.body
+      %td= post.body.html_safe
       %td= post.user.username
       %td= link_to 'Show', post
       - if post.users_post(current_user)
