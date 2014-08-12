@@ -2,8 +2,13 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :title
-    / = f.input :body
-    = f.input :body, :as => :ckeditor, label: false
-  .form-actions
-    = f.button :submit
+    .row
+      = f.input :title
+    %br 
+    .row
+      = f.input :body, :as => :ckeditor
+  %br     
+  .row    
+    .form-actions
+      .pull-right
+        = f.button :submit, class: "btn btn-primary"

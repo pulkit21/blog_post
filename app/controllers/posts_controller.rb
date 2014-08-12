@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    redirect_to @post, notice: 'Not an authorized user'  if !@post.users_post(current_user)
   end
 
   # POST /posts
@@ -54,6 +55,10 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def post_section
+    
   end
 
   def published
