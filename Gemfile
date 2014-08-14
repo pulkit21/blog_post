@@ -36,6 +36,12 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 gem 'font-awesome-rails'
 
+# DateTime Picker
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.2'
+
+# Post related
+gem 'truncate_html'
 
 # Templating
 gem 'haml-rails'

@@ -1,27 +1,39 @@
-%h1 Listing posts
-%table.table
-  %thread
-    %tr
-      %th Title
-      %th Body
-      %th Written by
-      %th Published date
-      %th
-      %th
-      %th
-
-  - @posts.sorted.each do |post|
-    %tbody
-      %tr
-        %td= link_to post.title, post
-        %td= post.body.html_safe
-        %td= post.user.username
-        %td= post.published_at
-        / %td= link_to 'Show', post
-        / - if post.users_post(current_user)
-        /   %td= link_to 'Edit', edit_post_path(post)
-        /   %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Post', new_post_path
+%section#blog.container
+  .row
+    %aside.col-sm-4.col-sm-push-8
+      .widget.search
+        %form.navbar-form{role: "search"}
+          .input-group.add-on
+            %input#srch-term.form-control{name: "search", placeholder: "Search", type: "text", value: params[:search]}/
+            .input-group-btn
+              %button.btn.btn-danger{type: "submit"}
+                %i.glyphicon.glyphicon-search
+    .col-sm-8.col-sm-pull-4
+      .row
+        .pull-right
+          = link_to 'New Post', new_post_path, class: "btn btn-primary"
+      - @posts.sorted.each do |post|
+        .row
+          %h3
+            = link_to post.title.capitalize, post
+        .row
+          = truncate_html(post.body.html_safe, length: 500)
+        %p  
+        .row
+          %p
+            %span
+              %i.fa.fa-user
+                = post.user.username.capitalize
+            %span
+              %i.fa.fa-calendar
+                = post.set_date
+            %span
+              %i.fa.fa-clock-o
+                = post.set_time
+            %span
+              %i.fa.fa-comments-o
+                %a{href:"#"}comments(6)
+            %span
+              %i.fa.fa-share-alt 
+                share
+        %hr          

@@ -1,29 +1,43 @@
 %p#notice= notice
-
-%p
-  %b Title:
-  = @post.title
-%p
-  %b Body:
+.row
+  %h3
+    = @post.title.capitalize
+.row
   = @post.body.html_safe
-  .row
-    .col-md-2
-      Written By
-    .col-md-1
-      = @post.user.username
-      = @post.published_at
-    .col-md-3
-    .col-d-5.pull-right
-      - if @post.users_post(current_user)
-        - if @post.published?
-          / = @post.published_at
-          = link_to "unpublish", unpublished_post_path, class: "btn btn-primary"
-        - else
-          = simple_form_for(@post) do |f|
-            = f.input :published_at
+.row
+  %span
+    %i.fa.fa-user
+      = @post.user.username.capitalize
+  - if !@post.published_at.nil?
+    %span
+      %i.fa.fa-calendar
+        = @post.set_date
+    %span
+      %i.fa.fa-clock-o
+        = @post.set_time
+%br      
+.row
+  .pull-right
+    - if @post.users_post(current_user)
+      - if @post.published?
+        = link_to "unpublish", unpublished_post_path, class: "btn btn-primary"
+      - else
+        = simple_form_for(@post) do |f|
+          .pull-left
+            = f.text_field :published_at, class: "form-control", id: "datetimepicker6", "data-date-format" => "DD/MM/YYYY HH:mm A", placeholder: "Select Publish Date"
+          .pull-right
             = f.button :submit, class: "btn btn-primary", value: "Publish"
-          / = link_to "publish", published_post_path, class: "btn btn-primary"
+  .pull-left
+    = link_to 'Edit', edit_post_path(@post), class: "btn btn-primary"
 
-        = link_to 'Edit', edit_post_path(@post), class: "btn btn-primary"
-/ \|
-/ = link_to 'Back', posts_path
+:javascript
+  $(function () {
+    $('#datetimepicker6').datetimepicker({
+      icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down"
+      }
+    });
+  });

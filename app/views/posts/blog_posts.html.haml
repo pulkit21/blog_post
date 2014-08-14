@@ -1,21 +1,22 @@
-%table.table
-  %thread
-    %tr
-      %th Title
-      %th Body
-      %th Published date
-      %th Actions
-      %th
-      %th
-      - @posts.sorted.each do |post|
-        %tbody
-          %tr
-            %td= link_to post.title, post
-            %td= post.body.html_safe
-            %td= post.published_at
-            %td
-              - if post.published?
-                = link_to "unpublish", unpublished_post_path(post), class: "btn btn-primary"
-              - else
-                = link_to "publish now", published_post_path(post), class: "btn btn-primary"
-              = link_to 'Edit', edit_post_path(post), class: "btn btn-primary"
+- @posts.sorted.each do |post|
+  .row
+    %h3
+      = link_to post.title.capitalize, post
+  .row
+    = truncate_html(post.body.html_safe, length: 800)
+  %br  
+  .row
+    - if !post.published_at.nil?
+      %span
+        %i.fa.fa-calendar
+          = post.set_date
+      %span
+        %i.fa.fa-clock-o
+          = post.set_time
+    .pull-right
+      - if post.published?
+        = link_to "unpublish", unpublished_post_path(post), class: "btn btn-primary"
+      - else
+        = link_to "publish now", published_post_path(post), class: "btn btn-primary"
+      = link_to 'Edit', edit_post_path(post), class: "btn btn-primary"
+  %hr    

@@ -53,4 +53,14 @@ class Post < ActiveRecord::Base
     self.save!
   end
 
+  #Date format
+  def set_date
+    self.published_at.strftime("%d-%b-%Y")
+  end
+
+  # Time format
+  def set_time
+    self.published_at.strftime("%I:%M %p")
+  end
+
 end

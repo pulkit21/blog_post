@@ -32,13 +32,6 @@
             %li= link_to "Link 2", "/path2"
             / %li= link_to "Link 3", "/path3"
             / %li= link_to "Link 3", "/path3"
-            %li.col-md-3
-              %form.navbar-form{role: "search"}
-                .input-group.add-on
-                  %input#srch-term.form-control{name: "search", placeholder: "Search", type: "text", value: params[:search]}/
-                  .input-group-btn
-                    %button.btn.btn-default{type: "submit"}
-                      %i.glyphicon.glyphicon-search
 
     .container
       .row
@@ -53,5 +46,5 @@
           /     %li= link_to "Link 1", "/path1"
           /     %li= link_to "Link 2", "/path2"
           /     %li= link_to "Link 3", "/path3"
-      %footer
-        %p &copy; Company 2014
+      / %footer
+      /   %p &copy; Company 2014
