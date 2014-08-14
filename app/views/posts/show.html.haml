@@ -11,13 +11,18 @@
       Written By
     .col-md-1
       = @post.user.username
+      = @post.published_at
+    .col-md-3
     .col-d-5.pull-right
       - if @post.users_post(current_user)
         - if @post.published?
           / = @post.published_at
           = link_to "unpublish", unpublished_post_path, class: "btn btn-primary"
         - else
-          = link_to "publish", published_post_path, class: "btn btn-primary"
+          = simple_form_for(@post) do |f|
+            = f.input :published_at
+            = f.button :submit, class: "btn btn-primary", value: "Publish"
+          / = link_to "publish", published_post_path, class: "btn btn-primary"
 
         = link_to 'Edit', edit_post_path(@post), class: "btn btn-primary"
 / \|

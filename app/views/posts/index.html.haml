@@ -10,7 +10,7 @@
       %th
       %th
 
-  - @posts.each do |post|
+  - @posts.sorted.each do |post|
     %tbody
       %tr
         %td= link_to post.title, post

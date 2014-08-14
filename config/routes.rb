@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     member do
       get :published
       get :unpublished
-      get :post_section
+    end
+    collection do
+      get :blog_posts
     end
   end
 

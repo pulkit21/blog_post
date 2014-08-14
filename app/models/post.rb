@@ -2,7 +2,8 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :body
   belongs_to :user
-  
+
+  scope :sorted, lambda {order('published_at')}
   scope :published, lambda {where('published_at IS NOT NULL')}
   # scope :unpublished, lambda {where('published_at IS NULL')}
 

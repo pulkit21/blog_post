@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :published, :unpublished, :update, :destroy]
-
+  before_action :authenticate_user!, :except =>[:index, :show]
   # GET /posts
   # GET /posts.json
   def index
@@ -57,14 +57,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def post_section
-    
+  def blog_posts
+    @posts = current_user.posts
   end
 
   def published
     if @post.users_post(current_user)
       @post.publish!
-      redirect_to @post, notice: 'Post was successfully published.'
+      redirect_to blog_posts_posts_path, notice: 'Post was successfully published.'
     else
       redirect_to @post, notice: 'Not an authorized user' 
     end
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
   def unpublished
     if @post.users_post(current_user)
       @post.unpublish!
-      redirect_to @post, notice: 'Post was successfully unpublished.'
+      redirect_to blog_posts_posts_path, notice: 'Post was successfully unpublished.'
     else
       redirect_to @post, notice: 'Not an authorized user' 
     end
@@ -97,6 +97,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :published_at)
     end
 end
