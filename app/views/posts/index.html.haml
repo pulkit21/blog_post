@@ -13,27 +13,28 @@
         .pull-right
           = link_to 'New Post', new_post_path, class: "btn btn-primary"
       - @posts.sorted.each do |post|
-        .row
-          %h3
-            = link_to post.title.capitalize, post
-        .row
-          = truncate_html(post.body.html_safe, length: 500)
-        %p  
-        .row
-          %p
-            %span
-              %i.fa.fa-user
-                = post.user.username.capitalize
-            %span
-              %i.fa.fa-calendar
-                = post.set_date
-            %span
-              %i.fa.fa-clock-o
-                = post.set_time
-            %span
-              %i.fa.fa-comments-o
-                %a{href:"#"}comments(6)
-            %span
-              %i.fa.fa-share-alt 
-                share
-        %hr          
+        - if post.published_time
+          .row
+            %h3
+              = link_to post.title.capitalize, post
+          .row
+            = truncate_html(post.body.html_safe, length: 500)
+          %p  
+          .row
+            %p
+              %span
+                %i.fa.fa-user
+                  = post.user.username.capitalize
+              %span
+                %i.fa.fa-calendar
+                  = post.set_date
+              %span
+                %i.fa.fa-clock-o
+                  = post.set_time
+              %span
+                %i.fa.fa-comments-o
+                  %a{href:"#"}comments(6)
+              %span
+                %i.fa.fa-share-alt 
+                  share
+          %hr          

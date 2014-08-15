@@ -5,7 +5,8 @@ class Post < ActiveRecord::Base
 
   scope :sorted, lambda {order('published_at')}
   scope :published, lambda {where('published_at IS NOT NULL')}
-  # scope :unpublished, lambda {where('published_at IS NULL')}
+  # scope :published, lambda {where("published_at IS NOT NULL AND published_at <= ?", Time.now.strftime('%a, %d %b %Y %H:%M:%S UTC +00:00'))}
+  # scope :unpublished, lambda {where('published_at <= ?',Time.now.strftime('%a, %d %b %Y %H:%M:%S UTC +00:00'))}
 
   after_create :update_post_path, on: :create
   # before_save :update_post_path
@@ -51,6 +52,11 @@ class Post < ActiveRecord::Base
   def update_post_path
     self.post_path = to_param
     self.save!
+  end
+
+  #Publish it at time
+  def published_time
+    self.published_at <= Time.now.strftime('%a, %d %b %Y %H:%M:%S UTC +00:00')
   end
 
   #Date format
