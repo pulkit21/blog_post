@@ -63,7 +63,7 @@ gem 'guard-rspec', group: [:development, :test], require: false
 gem 'terminal-notifier-guard', group: [:development, :test]
 
 # For Tagging
-gem 'acts-as-taggable-on'
+# gem 'acts-as-taggable-on'
 
 # For the HTML editor
 gem 'ckeditor', github: 'galetahub/ckeditor'
