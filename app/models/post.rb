@@ -61,7 +61,17 @@ class Post < ActiveRecord::Base
 
   #Date format
   def set_date
-    self.published_at.strftime("%d-%b-%Y")
+    self.published_at.strftime("%b %d, %Y")
+  end
+
+  # Date format in list page
+  def post_created_at
+    self.created_at.strftime("%b %d, %Y %I:%M %p")
+  end
+
+  # Date format in list page
+  def post_published_at
+    self.published_at.strftime("%b %d, %Y %I:%M %p")
   end
 
   # Time format
@@ -69,4 +79,11 @@ class Post < ActiveRecord::Base
     self.published_at.strftime("%I:%M %p")
   end
 
+  def published_true?
+    if self.published?
+      true
+    else
+      false
+    end
+  end
 end

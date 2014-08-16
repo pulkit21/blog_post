@@ -1,7 +1,9 @@
-%h1 Editing post
+.col-xs-12.col-sm-12.col-md-12.col-lg-12
+  .show-blog-post.listing-radius
+    .listing-content
+      %h1.lead.post-title Edit Post
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Show', @post
-\|
-= link_to 'Back', posts_path
+/ = link_to 'Show', @post
+/ \|
+/ = link_to 'Back', posts_path

@@ -1,14 +1,14 @@
 = simple_form_for(@post) do |f|
-  = f.error_notification
+  .listing-content
+    = f.error_notification
 
-  .form-inputs
-    .row
+    .row.post-content
       = f.input :title
-    %br 
-    .row
-      = f.input :body, :as => :ckeditor
-  %br     
-  .row    
-    .form-actions
-      .pull-right
-        = f.button :submit, class: "btn btn-primary"
+    .row.post-content
+      = f.input :body, :as => :ckeditor   
+  .row.blog-show-page
+    .blog-post-author
+      = f.button :submit, class: "btn btn-primary"
+    .blog-post-date
+      - if action_name == "edit"
+        = link_to 'Show', @post, class: "btn btn-primary"

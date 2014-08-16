@@ -1,34 +1,48 @@
 %p#notice= notice
-.row
-  %h3
-    = @post.title.capitalize
-.row
-  = @post.body.html_safe
-.row
-  %span
-    %i.fa.fa-user
-      = @post.user.username.capitalize
-  - if !@post.published_at.nil?
-    %span
-      %i.fa.fa-calendar
-        = @post.set_date
-    %span
-      %i.fa.fa-clock-o
-        = @post.set_time
-%br      
-.row
-  .pull-right
-    - if @post.users_post(current_user)
-      - if @post.published?
-        = link_to "unpublish", unpublished_post_path, class: "btn btn-primary"
-      - else
-        = simple_form_for(@post) do |f|
-          .pull-left
-            = f.text_field :published_at, class: "form-control", id: "datetimepicker6", "data-date-format" => "DD/MM/YYYY HH:mm A", placeholder: "Select Publish Date"
-          .pull-right
-            = f.button :submit, class: "btn btn-primary", value: "Publish"
-  .pull-left
-    = link_to 'Edit', edit_post_path(@post), class: "btn btn-primary"
+/ .row
+/   %h3
+/     = @post.title.capitalize
+/ .row
+/   = @post.body.html_safe
+/ .row
+/   %span
+/     %i.fa.fa-user
+/       = @post.user.username.capitalize
+/   - if !@post.published_at.nil?
+/     %span
+/       %i.fa.fa-calendar
+/         = @post.set_date
+/     %span
+/       %i.fa.fa-clock-o
+/         = @post.set_time
+.col-xs-12.col-sm-12.col-md-12.col-lg-12
+  .show-blog-post.listing-radius
+    .listing-content
+      %h1.lead.post-title= @post.title.capitalize
+      .post-top
+        - if !@post.published_at.nil?
+          .post-date
+            Posted on
+            = @post.set_date
+          .post-author
+            By
+            %strong.user-link
+              =link_to @post.user.username.capitalize
+      %p.show-post-content= @post.body.html_safe
+    .row.blog-show-page
+      - if @post.users_post(current_user)
+        .blog-post-author
+          = link_to 'Edit', edit_post_path(@post), class: "btn btn-danger"
+        - if @post.published?
+          .blog-post-date
+            = link_to "Unpublish", unpublished_post_path, class: "btn btn-danger"
+        - else
+          = simple_form_for(@post) do |f|
+            .row
+              .blog-post-show
+                = f.text_field :published_at, class: "form-control post-edit-link col-xs-12 col-sm-12 col-md-12 col-lg-12", id: "datetimepicker6", "data-date-format" => "DD/MM/YYYY HH:mm A", placeholder: "Select Publish Date"
+              .blog-show-post-date
+                = f.button :submit, class: "btn btn-danger show-publish", value: "Publish"
 
 :javascript
   $(function () {

@@ -1,9 +1,12 @@
-%h2 Resend unlock instructions
-= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-  = f.error_notification
-  = f.full_error :unlock_token
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-  .form-actions
-    = f.button :submit, "Resend unlock instructions"
-= render "devise/shared/links"
+.col-xs-12.col-sm-12.col-md-12.col-lg-12
+  .show-blog-post.listing-radius
+    .listing-content
+      %h1.lead.post-title Resend unlock instructions
+      = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+        = f.error_notification
+        = f.full_error :unlock_token
+        .row.post-content
+          = f.input :email, required: true, autofocus: true, placeholder: "Enter your email address"
+        .row.post-content
+          = f.button :submit, "Resend unlock instructions", class: "btn-primary"
+      = render "devise/shared/links"
