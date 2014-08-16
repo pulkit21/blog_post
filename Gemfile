@@ -89,3 +89,6 @@ gem 'unf'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#For Heroku
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
