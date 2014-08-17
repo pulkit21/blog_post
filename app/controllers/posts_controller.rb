@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.published
     if params[:search].present?
-      @posts = @posts.where("title like :search OR body like :search", search: "%#{params[:search]}%")
+      @posts = @posts.where("title like :search OR body like :search OR post_path like :search", search: "%#{params[:search]}%")
     else
       @posts
     end
