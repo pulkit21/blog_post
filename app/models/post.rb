@@ -2,7 +2,8 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :body
   belongs_to :user
-
+  has_many :comments
+  acts_as_votable
   scope :sorted, lambda {order('published_at')}
   scope :published, lambda {where('published_at IS NOT NULL')}
   # scope :published, lambda {where("published_at IS NOT NULL AND published_at <= ?", Time.now.strftime('%a, %d %b %Y %H:%M:%S UTC +00:00'))}

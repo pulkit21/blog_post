@@ -274,11 +274,18 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  }
+}
 
 .img_user {
   max-width: 100%;
-height: auto;
-display: block;
-margin: 0px auto;
+  height: auto;
+  display: block;
+  margin: 0px auto;
+}
+
+.post_list_button {  
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }

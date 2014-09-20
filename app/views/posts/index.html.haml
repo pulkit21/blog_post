@@ -1,19 +1,35 @@
-- @posts.sorted.each do |post|
-  .col-xs-12.col-sm-12.col-md-4.col-lg-4
-    - if post.published_time
-      .listing.listing-radius
-        .listing-content
+.col-md-9
+  - @posts.sorted.each do |post|
+    .col-xs-12.col-sm-12.col-md-4.col-lg-4
+      - if post.published_time
+        .listing.listing-radius
+          .listing-content
+            %h3.lead.post-title= link_to post.title.capitalize, post
+            %p= truncate_html(post.body.html_safe, length: 180)
+            %p
+              %u
+                = link_to "Read More", post
+          .row.blog-post-page
+            .blog-post-date
+              %span
+                %i.fa.fa-calendar
+                  = post.set_date
+            .blog-post-author 
+              %span
+                %i.fa.fa-user
+                  =link_to post.user.username.capitalize
+.col-md-3
+  .row
+    .col-md-12
+      %h1 Recent Post
+      - @posts.order('published_at desc').limit(3).each do |post|
+        - if post.published_time
           %h3.lead.post-title= link_to post.title.capitalize, post
-          %p= truncate_html(post.body.html_safe, length: 180)
-          %p
-            %u
-              = link_to "Read More", post
-        .row.blog-post-page
-          .blog-post-date
-            %span
-              %i.fa.fa-calendar
-                = post.set_date
-          .blog-post-author 
-            %span
-              %i.fa.fa-user
-                =link_to post.user.username.capitalize
+  .row
+    .col-md-12
+      %h1 Popular Post
+      - popular_post = {}
+      - @posts.each do |post|
+        -popular_post[post.id] = post.get_likes.size
+      = popular_post 
+    

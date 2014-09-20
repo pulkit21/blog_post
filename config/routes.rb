@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -10,10 +11,13 @@ Rails.application.routes.draw do
     member do
       get :published
       get :unpublished
+      put :like
+      put :dislike
     end
     collection do
       get :blog_posts
     end
+    resources :comments
   end
 
   # Example of regular route:

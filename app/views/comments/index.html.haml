@@ -1,0 +1,16 @@
+%h1 Listing comments
+
+%table
+  %tr
+    %th Body
+    %th
+    %th
+    %th
+
+  - @comments.each do |comment|
+    %tr
+      %td= comment.body
+
+%br
+
+= link_to 'New Comment', new_post_comment_path

@@ -6,11 +6,11 @@
         %table.table.table-hover.table-bordered
           %thead
             %tr
-              %th Post Title
-              %th Published
-              %th Created At
-              %th Published At
-              %th Actions
+              %th.text-center Post Title
+              %th.text-center Published
+              %th.text-center Created At
+              %th.text-center Published At
+              %th.text-center Actions
           %tbody
             - @posts.sorted.each do |post|
               %tr
@@ -19,9 +19,9 @@
                 %td= post.post_created_at
                 %td=post.post_published_at if post.published?
                 %td
-                  = link_to 'show', post, class: "btn btn-primary"
-                  = link_to 'Edit', edit_post_path(post), class: "btn btn-primary"
-                  = link_to 'Delete', post_path(post),:method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger" 
+                  = link_to 'show', post, class: "btn btn-primary post_list_button"
+                  = link_to 'Edit', edit_post_path(post), class: "btn btn-primary post_list_button"
+                  = link_to 'Delete', post_path(post),:method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger post_list_button" 
                   / - if post.published?
                   /   = link_to "unpublish", unpublished_post_path(post), class: "btn btn-primary"
                   / - else

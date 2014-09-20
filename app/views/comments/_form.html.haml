@@ -1,0 +1,9 @@
+= simple_nested_form_for(:comment, :url  => post_comments_path(@post), method: :post ) do |f|
+  .listing-content
+    = f.error_notification
+
+    .row.post-content
+      = f.input :body, :as => :ckeditor   
+  .row.blog-show-page
+    .blog-post-author
+      = f.button :submit, class: "btn btn-primary"

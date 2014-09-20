@@ -1,20 +1,4 @@
 %p#notice= notice
-/ .row
-/   %h3
-/     = @post.title.capitalize
-/ .row
-/   = @post.body.html_safe
-/ .row
-/   %span
-/     %i.fa.fa-user
-/       = @post.user.username.capitalize
-/   - if !@post.published_at.nil?
-/     %span
-/       %i.fa.fa-calendar
-/         = @post.set_date
-/     %span
-/       %i.fa.fa-clock-o
-/         = @post.set_time
 .col-xs-12.col-sm-12.col-md-12.col-lg-12
   .show-blog-post.listing-radius
     .listing-content
@@ -28,7 +12,7 @@
             By
             %strong.user-link
               =link_to @post.user.username.capitalize
-      %p.show-post-content= @post.body.html_safe
+      .show-post-content= @post.body.html_safe
     .row.blog-show-page
       - if @post.users_post(current_user)
         .blog-post-author
@@ -40,9 +24,36 @@
           = simple_form_for(@post) do |f|
             .row
               .blog-post-show
-                = f.text_field :published_at, class: "form-control post-edit-link col-xs-12 col-sm-12 col-md-12 col-lg-12", id: "datetimepicker6", "data-date-format" => "DD/MM/YYYY HH:mm A", placeholder: "Select Publish Date"
+                = f.text_field :published_at, class: "form-control post-edit-link col-xs-12 col-sm-12 col-md-12 col-lg-12", id: "datetimepicker6", "data-date-format" => "DD/MM/YYYY HH:mm:ss A", placeholder: "Select Publish Date"
               .blog-show-post-date
-                = f.button :submit, class: "btn btn-danger show-publish", value: "Publish"
+                = f.button :submit, class: "btn btn-danger show-publish", value: "Publish"  
+      - if current_user.present?          
+        - if (current_user.liked? @post)
+          = link_to "dislike", dislike_post_path(@post), method: :put
+        - else
+          = link_to "like", like_post_path(@post), method: :put
+      - else
+        = link_to "like", like_post_path(@post), method: :put
+
+      = @post.get_likes.size
+  .col-xs-12.col-sm-12.col-md-12.col-lg-12
+    .show-blog-post.listing-radius
+      .listing-content
+        %h1 Comments
+        - @post.comments.each do |comment|
+          %li
+            = comment.body.html_safe
+            %hr
+        = simple_form_for [@post, Comment.new] do |f|
+          .listing-content
+            = f.error_notification
+
+            .row.post-content
+              = f.input :body, :as => :ckeditor  
+          .row.blog-show-page
+            .blog-post-author
+              = f.button :submit, class: "btn btn-primary"
+
 
 :javascript
   $(function () {

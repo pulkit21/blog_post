@@ -73,7 +73,8 @@ gem 'mini_magick'
 gem 'fog', '~> 1.21.0'
 gem 'unf'
 
-
+# For Like
+gem 'acts_as_votable', '~> 0.10.0'
 # For Commenting
 # gem 'disqus'
 # gem "middleman-disqus"
