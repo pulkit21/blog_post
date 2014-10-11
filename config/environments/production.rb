@@ -91,7 +91,7 @@ Rails.application.configure do
     Authentication: "plain",
     enable_starttls_auto: true,
     user_name: 'rordeveloper21',
-    password: '8960959515'
+    password: '5216157007a!'
   }
   config.action_mailer.perform_deliveries = true
 end
