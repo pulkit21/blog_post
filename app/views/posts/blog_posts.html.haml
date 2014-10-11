@@ -1,0 +1,28 @@
+.col-xs-12.col-sm-12.col-md-12.col-lg-12
+  .show-blog-post.listing-radius
+    .listing-content
+      %h1.lead.post-title Posts List
+      .table-responsive
+        %table.table.table-hover.table-bordered
+          %thead
+            %tr
+              %th Post Title
+              %th Published
+              %th Created At
+              %th Published At
+              %th Actions
+          %tbody
+            - @posts.sorted.each do |post|
+              %tr
+                %td= link_to post.title.capitalize, post
+                %td= post.published_true?
+                %td= post.post_created_at
+                %td=post.post_published_at if post.published?
+                %td
+                  = link_to 'show', post, class: "btn btn-primary"
+                  = link_to 'Edit', edit_post_path(post), class: "btn btn-primary"
+                  = link_to 'Delete', post_path(post),:method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger" 
+                  / - if post.published?
+                  /   = link_to "unpublish", unpublished_post_path(post), class: "btn btn-primary"
+                  / - else
+                  /   = link_to "publish now", published_post_path(post), class: "btn btn-primary"

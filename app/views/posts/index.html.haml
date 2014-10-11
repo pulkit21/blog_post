@@ -1,23 +1,19 @@
-%h1 Listing posts
-
-%table
-  %tr
-    %th Title
-    %th Body
-    %th Written by
-    %th
-    %th
-    %th
-
-  - @posts.each do |post|
-    %tr
-      %td= post.title
-      %td= post.body
-      %td= post.user.email
-      %td= link_to 'Show', post
-      %td= link_to 'Edit', edit_post_path(post)
-      %td= link_to 'Destroy', post, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Post', new_post_path
+- @posts.sorted.each do |post|
+  .col-xs-12.col-sm-12.col-md-4.col-lg-4
+    - if post.published_time
+      .listing.listing-radius
+        .listing-content
+          %h3.lead.post-title= link_to post.title.capitalize, post
+          %p= truncate_html(post.body.html_safe, length: 180)
+          %p
+            %u
+              = link_to "Read More", post
+        .row.blog-post-page
+          .blog-post-date
+            %span
+              %i.fa.fa-calendar
+                = post.set_date
+          .blog-post-author 
+            %span
+              %i.fa.fa-user
+                =link_to post.user.username.capitalize

@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use mysql as the database for Active Record
-gem 'mysql2'
+# gem 'mysql2'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,6 +37,12 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', branch: 'bootstrap3'
 gem 'font-awesome-rails'
 
+# DateTime Picker
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.0.2'
+
+# Post related
+gem 'truncate_html'
 
 # Templating
 gem 'haml-rails'
@@ -57,9 +64,20 @@ gem 'guard-rspec', group: [:development, :test], require: false
 gem 'terminal-notifier-guard', group: [:development, :test]
 
 # For Tagging
-gem 'acts-as-taggable-on'
+# gem 'acts-as-taggable-on'
+
+# For the HTML editor
+gem 'ckeditor', github: 'galetahub/ckeditor'
+gem "non-stupid-digest-assets"
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick'
+gem 'fog', '~> 1.21.0'
+gem 'unf'
 
 
+# For Commenting
+# gem 'disqus'
+# gem "middleman-disqus"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -72,3 +90,6 @@ gem 'acts-as-taggable-on'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#For Heroku
+gem 'rails_12factor', group: :production
+# gem 'pg', group: :production
