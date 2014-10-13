@@ -88,8 +88,8 @@ Rails.application.configure do
     domain: "gmail.com",
     Authentication: "plain",
     enable_starttls_auto: true,
-    user_name: '<%= ENV['GMAIL_USERNAME'] %>',
-    password: '<%= ENV['GMAIL_PASSWORD'] %>'
+    user_name: "<%= ENV['GMAIL_USERNAME'] %>",
+    password: "<%= ENV['GMAIL_PASSWORD'] %>"
   }
   config.action_mailer.perform_deliveries = true
 end
