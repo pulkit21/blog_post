@@ -1,20 +1,4 @@
 GIT
-  remote: git://github.com/galetahub/ckeditor.git
-  revision: 6d8032b87595c3ffa8e9dfd7d86721ecdc53a3e3
-  specs:
-    ckeditor (4.1.0)
-      mime-types
-      orm_adapter (~> 0.5.0)
-
-GIT
-  remote: git://github.com/mbleigh/seed-fu.git
-  revision: 192bf4835294f3a717bea65bc1ee179e2e3a8240
-  specs:
-    seed-fu (2.3.3)
-      activerecord (>= 3.1, < 4.2)
-      activesupport (>= 3.1, < 4.2)
-
-GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
   revision: 1d93c5a77049b3d21d17c847ad0531d7714fa229
   branch: bootstrap3
@@ -24,6 +8,21 @@ GIT
       execjs
       rails (>= 3.1)
       railties (>= 3.1)
+
+GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: 8200ccdbf789669d154b800aab329db8f46aabdc
+  specs:
+    ckeditor (5.1.1)
+      orm_adapter (~> 0.5.0)
+
+GIT
+  remote: https://github.com/mbleigh/seed-fu.git
+  revision: 34c054c914858c3d7685f83d16dea5c0e2114561
+  specs:
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -82,6 +81,7 @@ GEM
     coffee-script-source (1.7.1)
     columnize (0.8.9)
     commonjs (0.2.7)
+    concurrent-ruby (1.1.10)
     debug_inspector (0.0.2)
     debugger (1.6.8)
       columnize (>= 0.3.1)
@@ -146,7 +146,8 @@ GEM
       haml (>= 3.1, < 5.0)
       railties (>= 4.0.1)
     hike (1.2.3)
-    i18n (0.6.11)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
     jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
